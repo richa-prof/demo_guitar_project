@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @guitar.name %>
+</p>
+
+<p>
+  <strong>shape:</strong>
+  <%# binding.pry %>
+  <%= @guitar.preferences['shape'] %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @guitar.type %>
+</p>
+
+<p>
+  <strong>Strings:</strong>
+  <%= @guitar.strings %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @guitar.brand %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @guitar.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @guitar.price %>
+</p>
+
+<%= link_to 'Edit', edit_guitar_path(@guitar) %> |
+<%= link_to 'Back', guitars_path %>
