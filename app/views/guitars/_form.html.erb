@@ -2,11 +2,10 @@
   <% if guitar.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(guitar.errors.count, "error") %> prohibited this guitar from being saved:</h2>
-
       <ul>
-      <% guitar.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% guitar.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -19,23 +18,23 @@
   <%= f.fields_for :preferences do |ff| %>
     <div class="field">
       <%= ff.label :series %>
-      <%= ff.text_field :series %>
+      <%= ff.text_field :series, value: f.object.check_value_exist("series") %>
     </div>
     <div class="field">
       <%= ff.label :shape %>
-      <%= ff.text_field :shape %>
+      <%= ff.text_field :shape, value: f.object.check_value_exist("shape") %>
     </div>
     <div class="field">
       <%= ff.label :tuner %>
-      <%= ff.text_field :tuner %>
+      <%= ff.text_field :tuner, value: f.object.check_value_exist("tuner") %>
     </div>
     <div class="field">
       <%= ff.label :binding %>
-      <%= ff.text_field :binding %>
+      <%= ff.text_field :binding, value: f.object.check_value_exist("binding") %>
     </div>
     <div class="field">
       <%= ff.label :neck %>
-      <%= ff.text_field :neck %>
+      <%= ff.text_field :neck, value: f.object.check_value_exist("neck") %>
     </div>
   <% end %>
 
