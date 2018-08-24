@@ -1,6 +1,7 @@
 class Guitar < ApplicationRecord
   store_accessor :preferences
-
+  mount_uploader :image, ImageUploader
+  
   after_initialize :initialize_default_preferences_value
   after_create :add_serial_number
   #validates :name, :type, :type, :strings, :brand, :description, :price, presence: true

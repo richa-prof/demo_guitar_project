@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag(@guitar.image_url.to_s) %>
 <p>
   <strong>Name:</strong>
   <%= @guitar.name %>
 </p>
 
 <p>
+  <strong>series:</strong>
+  <%= @guitar.preferences['series'] %>
+</p>
+<p>
   <strong>shape:</strong>
-  <%# binding.pry %>
   <%= @guitar.preferences['shape'] %>
+</p>
+<p>
+  <strong>tuner:</strong>
+  <%= @guitar.preferences['tuner'] %>
+</p>
+<p>
+  <strong>binding:</strong>
+  <%= @guitar.preferences['binding'] %>
+</p>
+
+<p>
+  <strong>neck:</strong>
+  <%= @guitar.preferences['neck'] %>
 </p>
 
 <p>
