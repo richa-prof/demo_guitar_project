@@ -1,74 +1,188 @@
-<%= form_for(guitar) do |f| %>
-  <% if guitar.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(guitar.errors.count, "error") %> prohibited this guitar from being saved:</h2>
-      <ul>
-        <% guitar.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="container-fluid">
+    <div class="container">
+        <div class="formBox">
+            <%= form_for(guitar) do |f| %>
+                <% if guitar.errors.any? %>
+                    <div id="error_explanation">
+                        <h2><%= pluralize(guitar.errors.count, "error") %> prohibited this guitar from being saved:</h2>
+                        <ul>
+                            <% guitar.errors.full_messages.each do |message| %>
+                                <li>
+                                    <%= message %>
+                                </li>
+                                <% end %>
+                        </ul>
+                    </div>
+                    <% end %>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="inputBox focus">
+                                    <div>Image</div>
+                                    <br>
+                                    <%= f.file_field :image %>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="inputBox focus">
+                                    <div class="inputText">Model</div>
+                                    <%= f.text_field :model, class: "input" %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="inputBox focus">
+                                    <div class="inputText">Name</div>
+                                    <%= f.text_field :name, class: "input" %>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="inputBox focus">
+                                    <div class="inputText">Type</div>
+                                    <%= f.text_field :guitar_type, class: "input" %>
+                                </div>
+                            </div>
+                        </div>
+                        <%= f.fields_for :preferences do |ff| %>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Series</div>
+                                        <%= ff.text_field :series, value: f.object.check_value_exist("series"), class: "input" %>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Shape</div>
+                                        <%= ff.text_field :shape, value: f.object.check_value_exist("shape"), class: "input" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Tuner</div>
+                                        <%= ff.text_field :tuner, value: f.object.check_value_exist("tuner"), class: "input" %>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Binding</div>
+                                        <%= ff.text_field :binding, value: f.object.check_value_exist("binding"), class: "input" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Neck</div>
+                                        <%= ff.text_field :neck, value: f.object.check_value_exist("neck"), class: "input" %>
+                                    </div>
+                                </div>
+                                <% end %>
+                                    <div class="col-sm-6">
+                                        <div class="inputBox focus">
+                                            <div class="inputText">Strings</div>
+                                            <%= f.text_field :strings, class: "input" %>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Brand</div>
+                                        <%= f.text_field :brand, class: "input" %>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">price</div>
+                                        <%= f.text_field :price, class: "input" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="inputBox focus">
+                                        <div class="inputText">Description</div>
+                                        <%= f.text_area :description, class: "input" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="submit" name="" class="button" value="submit">
+                                </div>
+                            </div>
+                            <% end %>
+        </div>
     </div>
-  <% end %>
+</div>
 
+<script type="text/javascript">
+    $(".input").focus(function() {
+        $(this).parent().addClass("focus");
+    })
+</script>
+<style>
+    .formBox {
+        margin-top: 90px;
+        padding: 50px;
+    }
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    .formBox h1 {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        font-size: 48px;
+    }
 
-  <%= f.fields_for :preferences do |ff| %>
-    <div class="field">
-      <%= ff.label :series %>
-      <%= ff.text_field :series, value: f.object.check_value_exist("series") %>
-    </div>
-    <div class="field">
-      <%= ff.label :shape %>
-      <%= ff.text_field :shape, value: f.object.check_value_exist("shape") %>
-    </div>
-    <div class="field">
-      <%= ff.label :tuner %>
-      <%= ff.text_field :tuner, value: f.object.check_value_exist("tuner") %>
-    </div>
-    <div class="field">
-      <%= ff.label :binding %>
-      <%= ff.text_field :binding, value: f.object.check_value_exist("binding") %>
-    </div>
-    <div class="field">
-      <%= ff.label :neck %>
-      <%= ff.text_field :neck, value: f.object.check_value_exist("neck") %>
-    </div>
-  <% end %>
+    .inputBox {
+        position: relative;
+        box-sizing: border-box;
+        margin-bottom: 50px;
+    }
 
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.text_field :type %>
-  </div>
+    .inputBox .inputText {
+        position: absolute;
+        font-size: 14px;
+        line-height: 50px;
+        transition: .5s;
+        opacity: .5;
+    }
 
-  <div class="field">
-    <%= f.label :strings %>
-    <%= f.text_field :strings %>
-  </div>
+    .inputBox .input {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(0, 0, 0, .5);
+    }
 
-  <div class="field">
-    <%= f.label :brand %>
-    <%= f.text_field :brand %>
-  </div>
+    .focus .inputText {
+        transform: translateY(-30px);
+        font-size: 15px;
+        opacity: 1;
+        color: #00bcd4;
+    }
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+    textarea {
+        height: 60px !important;
+    }
 
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    .button {
+        width: 100%;
+        height: 50px;
+        border: none;
+        outline: none;
+        background: #03A9F4;
+        color: #fff;
+    }
+</style>

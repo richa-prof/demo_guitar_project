@@ -3,68 +3,48 @@
 	<div class="col-md-3">
 		<p class="lead">Guitar Store</p>
 		<div class="list-group">
-			<a href="#" class="list-group-item">Guitars</a>
+			<%= link_to "Guitars", guitars_path, class: "list-group-item" %>
 			<a href="#" class="list-group-item">Accesseries</a>
 		</div>
 	</div>
 	<div class="col-md-9">
-		<div class="row carousel-holder">
-			<div class="col-md-12">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active"><%= image_tag("g1.jpg", class: "slide-image", alt: "") %>
+		<% if params["search"].nil? %>
+			<div class="row carousel-holder">
+				<div class="col-md-12">
+					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item active"><%= image_tag("g1.jpg", class: "slide-image", alt: "") %>
+							</div>
+							<div class="item"><%= image_tag("g2.jpg", class: "slide-image", alt: "") %>
+							</div>
+							<div class="item"><%= image_tag("g3.jpg", class: "slide-image", alt: "") %>
+							</div>
+							<div class="item"><%= image_tag("g4.jpg", class: "slide-image", alt: "") %>
+							</div>
 						</div>
-						<div class="item"><%= image_tag("g2.jpg", class: "slide-image", alt: "") %>
-						</div>
-						<div class="item"><%= image_tag("g3.jpg", class: "slide-image", alt: "") %>
-						</div>
-						<div class="item"><%= image_tag("g4.jpg", class: "slide-image", alt: "") %>
-						</div>
+						<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
 					</div>
-					<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
 				</div>
 			</div>
-		</div>
+		<% else %>
+			<% unless params["search"]["term"] == "" %>
+				<h3>showing all results for <span class="text_blue"><%= params["search"]["term"]%></span></h3>
+			<% end %>
+			<br>
+		<% end %>
     <% unless  @guitars.blank? %>
       <% @guitars.each_slice(3) do |guitars| %>
-    		<div class="row">
-          <% guitars.each do |g| %>
-      			<div class="col-sm-4 col-lg-4 col-md-4">
-      				<div class="thumbnail">
-                <%= image_tag(g.image_file) %>
-      					<div class="caption">
-      						<h4 class="pull-right">$24.99</h4>
-      						<h4>
-      							<a href="#">First Product</a>
-      						</h4>
-      						<p>See more snippets like this online store item at
-      							<a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.
-      						</p>
-      					</div>
-      					<div class="ratings">
-      						<p class="pull-right">15 reviews</p>
-      						<p>
-      							<span class="glyphicon glyphicon-star"></span>
-      							<span class="glyphicon glyphicon-star"></span>
-      							<span class="glyphicon glyphicon-star"></span>
-      							<span class="glyphicon glyphicon-star"></span>
-      							<span class="glyphicon glyphicon-star"></span>
-      						</p>
-      					</div>
-      				</div>
-      			</div>
-          <% end %>
-    		</div>
+    		<%= render 'guitars_data', guitars: guitars  %>
       <% end %>
     <% else %>
         <h2 align="center"> Gitars not available right now </h2>

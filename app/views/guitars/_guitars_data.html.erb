@@ -1,0 +1,28 @@
+<div class="row">
+  <% guitars.each do |g| %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="thumbnail">
+        <%= image_tag(g.image_file, style: 'height:15vw;width:50vw;margin-bottom:20px;') %>
+        <div class="caption">
+          <h5 class="pull-right">Price: <%= g.price_money %></h5>
+          <h5>
+            <a href="#"><%= g.name%></a>
+          </h5>
+          <p>
+            <%= g.details %>
+          </p>
+        </div>
+        <div class="ratings">
+          <p class="pull-right">15 reviews</p>
+          <p>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

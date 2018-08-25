@@ -5,6 +5,8 @@ class GuitarsController < ApplicationController
   # GET /guitars.json
   def index
     @guitars = Guitar.all
+    filter_param = params["search"]["filter_param"] == "" ? "name" : params["search"]["filter_param"] if params["search"].present?
+    @guitars = @guitars.search_by_scope(filter_param, params["search"]["term"]) if params["search"].present?
   end
 
   # GET /guitars/1
@@ -69,6 +71,6 @@ class GuitarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guitar_params
-      params.require(:guitar).permit(:name, :type, :strings, :brand, :description, :price, :image, :serial_number, preferences: [:series, :shape, :tuner, :binding, :neck])
+      params.require(:guitar).permit(:name, :guitar_type, :strings, :brand, :description, :price, :image, :serial_number, :model, preferences: [:series, :shape, :tuner, :binding, :neck])
     end
 end

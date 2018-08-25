@@ -1,11 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<%= image_tag(@guitar.image_url.to_s) %>
+<%= image_tag(@guitar.image_url.to_s, width: "300px") %>
 <p>
   <strong>Name:</strong>
   <%= @guitar.name %>
 </p>
-
+<p>
+  <strong>Model:</strong>
+  <%= @guitar.model %>
+</p>
 <p>
   <strong>series:</strong>
   <%= @guitar.preferences['series'] %>
@@ -22,35 +23,29 @@
   <strong>binding:</strong>
   <%= @guitar.preferences['binding'] %>
 </p>
-
 <p>
   <strong>neck:</strong>
   <%= @guitar.preferences['neck'] %>
 </p>
-
 <p>
   <strong>Type:</strong>
-  <%= @guitar.type %>
+  <%= @guitar.guitar_type %>
 </p>
-
 <p>
   <strong>Strings:</strong>
   <%= @guitar.strings %>
 </p>
-
 <p>
   <strong>Brand:</strong>
   <%= @guitar.brand %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @guitar.description %>
 </p>
-
 <p>
   <strong>Price:</strong>
-  <%= @guitar.price %>
+  <%= @guitar.price_money %>
 </p>
 
 <%= link_to 'Edit', edit_guitar_path(@guitar) %> |

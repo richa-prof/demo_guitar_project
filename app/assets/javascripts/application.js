@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+function set_filter(e) {
+  $("#search_concept").html(e.dataset.val)
+  $("#filter_param").val(e.dataset.val);
+}
