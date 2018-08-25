@@ -7,6 +7,7 @@ class GuitarsController < ApplicationController
     @guitars = Guitar.all
     filter_param = params["search"]["filter_param"] == "" ? "name" : params["search"]["filter_param"] if params["search"].present?
     @guitars = @guitars.search_by_scope(filter_param, params["search"]["term"]) if params["search"].present?
+    @guitars = @guitars.page(params[:page]).order('created_at DESC')
   end
 
   # GET /guitars/1

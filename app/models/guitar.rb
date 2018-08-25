@@ -1,4 +1,5 @@
 class Guitar < ApplicationRecord
+  self.per_page = 8
   store_accessor :preferences
   mount_uploader :image, ImageUploader
 
