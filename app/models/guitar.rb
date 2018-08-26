@@ -1,5 +1,5 @@
 class Guitar < ApplicationRecord
-  self.per_page = 10
+  self.per_page = 9
   store_accessor :preferences
   mount_uploader :image, ImageUploader
 
@@ -11,10 +11,11 @@ class Guitar < ApplicationRecord
 
   scope :search_by_scope, -> (scope, term) { where("#{scope} ILIKE ?", "#{term}%")}
 
-  #validates :name, :type, :type, :strings, :brand, :description, :price, presence: true
+  validates :name, :type, :type, :strings, :brand, :description, :price, presence: true
+
   has_many :cart_items
   belongs_to :user, optional: true
-  
+
   def add_serial_number
     self.update_column(:serial_number, generate_serial_number)
   end
