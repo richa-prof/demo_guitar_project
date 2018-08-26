@@ -1,0 +1,3 @@
+<%= link_to my_cart_path(@cart.id), class: "btn btn-success cart_box" do %>
+  <span class="badge"><%= @cart.cart_items.size %></span> <span class="glyphicon glyphicon-shopping-cart"></span>(<%= number_to_currency @cart.total_price%>)
+<% end %>

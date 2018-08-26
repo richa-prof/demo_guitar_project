@@ -4,7 +4,7 @@
       <div class="thumbnail">
         <%= image_tag(g.image_file, style: 'height:15vw;width:50vw;margin-bottom:20px;') %>
         <div class="caption">
-          <h5 class="pull-right">Price: <%= g.price_money %></h5>
+          <!-- <h5 class="pull-right">Price: <%#= g.price_money %></h5> -->
           <h5>
             <a href="#"><%= g.name%></a>
           </h5>
@@ -12,6 +12,15 @@
             <%= g.details %>
           </p>
         </div>
+        <%= form_tag add_to_cart_path, remote: true do |f| %>
+          <h4 class="text-right">Price: <span style="color: green"><%= g.price_money %></span></h4>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <%= hidden_field_tag :guitar_id, '', value: g.id %>
+              <%= submit_tag "Add to Cart", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
         <div class="ratings">
           <p class="pull-right">15 reviews</p>
           <p>

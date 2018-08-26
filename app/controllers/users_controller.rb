@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @users = User.all
@@ -12,4 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
+  def checkout
+
+  end
 end

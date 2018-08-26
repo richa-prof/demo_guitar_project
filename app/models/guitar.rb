@@ -1,17 +1,20 @@
 class Guitar < ApplicationRecord
-  self.per_page = 8
+  self.per_page = 10
   store_accessor :preferences
   mount_uploader :image, ImageUploader
 
   FILTERS = ["name", "brand", "model"]
 
+  before_destroy :not_referenced_by_any_cart_item
   after_initialize :initialize_default_preferences_value
   after_create :add_serial_number
 
   scope :search_by_scope, -> (scope, term) { where("#{scope} ILIKE ?", "#{term}%")}
 
   #validates :name, :type, :type, :strings, :brand, :description, :price, presence: true
-
+  has_many :cart_items
+  belongs_to :user, optional: true
+  
   def add_serial_number
     self.update_column(:serial_number, generate_serial_number)
   end
@@ -55,4 +58,14 @@ class Guitar < ApplicationRecord
     preferences['binding'] ||= ''
     preferences['neck'] ||= ''
   end
+
+  private
+
+  def not_referenced_by_any_cart_item
+    unless cart_items.empty?
+      errors.add(:base, 'cart items present')
+      throw :abort
+    end
+  end
+
 end

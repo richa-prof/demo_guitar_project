@@ -42,14 +42,14 @@
 			<% end %>
 			<br>
 		<% end %>
-    <% unless  @guitars.blank? %>
-      <% @guitars.each_slice(3) do |guitars| %>
-    		<%= render 'guitars_data', guitars: guitars  %>
-      <% end %>
-    <% else %>
-        <h2 align="center"> Gitars not available right now </h2>
-    <% end %>
-		<br>
-		<%= will_paginate @guitars %>
+		<% unless  @guitars.blank? %>
+		  <% @guitars.each_slice(3) do |guitars| %>
+				<%= render 'guitars_data', guitars: guitars  %>
+		  <% end %>
+			<br>
+			<%= will_paginate @guitars, class: "pull-right" %>
+		<% else %>
+		    <h2 align="center"> Gitars not available right now </h2>
+		<% end %>
 	</div>
 </div>
