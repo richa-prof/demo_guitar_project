@@ -11,7 +11,7 @@ class Guitar < ApplicationRecord
 
   scope :search_by_scope, -> (scope, term) { where("#{scope} ILIKE ?", "#{term}%")}
 
-  validates :name, :type, :type, :strings, :brand, :description, :price, presence: true
+  validates :name, :guitar_type, :strings, :brand, :description, :price, presence: true
 
   has_many :cart_items
   belongs_to :user, optional: true
