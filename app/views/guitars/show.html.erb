@@ -1,4 +1,14 @@
-<%= image_tag(@guitar.image_url.to_s, width: "300px") %>
+<%= image_tag(@guitar.image_file, width: "300px") %>
+<br>
+<%= form_tag add_to_cart_path, remote: true do |f| %>
+  <h4 class="text-right">Price: <span style="color: green"><%= @guitar.price_money %></span></h4>
+  <div class="input-group">
+    <div class="input-group-btn">
+      <%= hidden_field_tag :guitar_id, '', value: @guitar.id %>
+      <%= submit_tag "Add to Cart", class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @guitar.name %>
