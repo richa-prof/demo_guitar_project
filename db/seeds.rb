@@ -24,6 +24,7 @@ data.each do |d|
   a.brand = d[:brand]
   a.description = d[:description]
   a.price = d[:price]
-  a.serial_number = d[:serial_number]
   a.save
+
+  Product.create(category: a)
 end

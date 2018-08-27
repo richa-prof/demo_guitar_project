@@ -2,8 +2,8 @@ class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:remove_from_cart]
 
   def add_to_cart
-    @guitar = Guitar.find(params[:guitar_id])
-    @cart_item = @cart.add_items(@guitar)
+    @product = Product.find(params[:product_id])
+    @cart_item = @cart.add_items(@product)
     @cart.save
   end
 
@@ -26,6 +26,6 @@ class CartItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_item_params
-      params.require(:cart_item).permit(:guitar_id, :cart_id, :quantity)
+      params.require(:cart_item).permit(:product_id, :cart_id, :quantity)
     end
 end

@@ -1,0 +1,30 @@
+<%= image_tag(@accessory.image_file, width: "300px") %>
+<br>
+<%= form_tag add_to_cart_path, remote: true do |f| %>
+  <h4 class="text-right">Price: <span style="color: green"><%= @accessory.price_money %></span></h4>
+  <div class="input-group">
+    <div class="input-group-btn">
+      <%= hidden_field_tag :product_id, '', value: @accessory.product.id %>
+      <%= submit_tag "Add to Cart", class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @accessory.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @accessory.description %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @accessory.brand %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @accessory.price %>
+</p>

@@ -1,14 +1,14 @@
 class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
 
-  def add_items(item)
-    current_item = cart_items.find_by(guitar_id: item.id)
+  def add_items(product)
+    current_item = cart_items.find_by(product_id: product.id)
 
     if current_item
       current_item.increment(:quantity)
       current_item.save
     else
-      current_item = cart_items.build(guitar_id: item.id)
+      current_item = cart_items.build(product_id: product.id)
     end
     current_item
   end

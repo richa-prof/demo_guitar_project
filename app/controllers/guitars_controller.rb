@@ -72,6 +72,6 @@ class GuitarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guitar_params
-      params.require(:guitar).permit(:name, :guitar_type, :strings, :brand, :description, :price, :image, :serial_number, :model, preferences: [:series, :shape, :tuner, :binding, :neck])
+      params.require(:guitar).permit(:name, :guitar_type, :strings, :brand, :description, :price, :image, :model, preferences: [:series, :shape, :tuner, :binding, :neck])
     end
 end

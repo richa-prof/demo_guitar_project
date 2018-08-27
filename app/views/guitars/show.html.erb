@@ -4,7 +4,7 @@
   <h4 class="text-right">Price: <span style="color: green"><%= @guitar.price_money %></span></h4>
   <div class="input-group">
     <div class="input-group-btn">
-      <%= hidden_field_tag :guitar_id, '', value: @guitar.id %>
+      <%= hidden_field_tag :product_id, '', value: @guitar.product.id %>
       <%= submit_tag "Add to Cart", class: "btn btn-primary pull-right" %>
     </div>
   </div>

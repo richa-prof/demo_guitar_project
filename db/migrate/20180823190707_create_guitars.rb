@@ -4,10 +4,12 @@ class CreateGuitars < ActiveRecord::Migration[5.0]
       enable_extension "hstore"
       t.string :name
       t.hstore :preferences
-      t.string :type
+      t.string :guitar_type
       t.string :strings
       t.string :brand
       t.text :description
+      t.string :image
+      t.string :model
       t.float :price
 
       t.timestamps

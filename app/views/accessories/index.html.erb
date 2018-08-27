@@ -1,0 +1,48 @@
+
+<div class="row">
+	<div class="col-md-3">
+		<p class="lead">Guitar Store</p>
+		<div class="list-group">
+			<%= link_to "Guitars", guitars_path, class: "list-group-item" %>
+			<%= link_to "Accessories", accessories_path, class: "list-group-item" %>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="row carousel-holder">
+			<div class="col-md-12">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="item active"><%= image_tag("a1.jpg", class: "slide-image", alt: "") %>
+						</div>
+						<div class="item"><%= image_tag("a2.png", class: "slide-image", alt: "") %>
+						</div>
+						<div class="item"><%= image_tag("a3.png", class: "slide-image", alt: "") %>
+						</div>
+						<div class="item"><%= image_tag("a4.jpg", class: "slide-image", alt: "") %>
+						</div>
+					</div>
+					<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<% unless  @accessories.blank? %>
+		  <% @accessories.each_slice(3) do |accessories| %>
+				<%= render 'accessories_data', accessories: accessories  %>
+		  <% end %>
+			<br>
+			<%#= will_paginate @accessories, class: "pull-right" %>
+		<% else %>
+		    <h2 align="center"> Accessories not available right now </h2>
+		<% end %>
+	</div>
+</div>

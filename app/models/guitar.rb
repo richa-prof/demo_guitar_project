@@ -5,24 +5,15 @@ class Guitar < ApplicationRecord
 
   FILTERS = ["name", "brand", "model"]
 
-  before_destroy :not_referenced_by_any_cart_item
   after_initialize :initialize_default_preferences_value
-  after_create :add_serial_number
+  after_create :create_product_entry
 
   scope :search_by_scope, -> (scope, term) { where("#{scope} ILIKE ?", "#{term}%")}
 
   validates :name, :guitar_type, :strings, :brand, :description, :price, presence: true
 
-  has_many :cart_items
+  has_one :product, as: :category, dependent: :destroy
   belongs_to :user, optional: true
-
-  def add_serial_number
-    self.update_column(:serial_number, generate_serial_number)
-  end
-
-  def generate_serial_number
-    "GUI-" + SecureRandom.hex(2)
-  end
 
   def check_value_exist(hash_key)
     self.preferences.nil? ? "" : self.preferences[hash_key]
@@ -60,13 +51,7 @@ class Guitar < ApplicationRecord
     preferences['neck'] ||= ''
   end
 
-  private
-
-  def not_referenced_by_any_cart_item
-    unless cart_items.empty?
-      errors.add(:base, 'cart items present')
-      throw :abort
-    end
+  def create_product_entry
+    Product.create(category: self)
   end
-
 end

@@ -14,7 +14,7 @@
 <% else %>
   <h1>shopping cart</h1>
   <% @cart_items.each do |cart_item| %>
-    <%= render 'carts/cart_row', guitar: cart_item.guitar, cart_item: cart_item, show_total: true %>
+    <%= render 'carts/cart_row', item: cart_item.product.category, cart_item: cart_item, show_total: true %>
   <% end %>
   <br>
   <div class="">

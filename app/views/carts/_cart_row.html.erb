@@ -1,24 +1,24 @@
 <div class="well">
   <div class="row">
     <div class="col-xs-2">
-      <%= image_tag(guitar.image_file, style: 'height:8vw;width:8vw;') %>
+      <%= image_tag(item.image_file, style: 'height:8vw;width:8vw;') %>
     </div>
     <div class="col-xs-6">
-      <h4><%= link_to "#{guitar.name}", guitar_path(guitar.id) %></h4>
+      <h4><%= link_to "#{item.name}", item.class.name == "Guitar" ? guitar_path(item.id) : accessory_path(item.id) %></h4>
     </div>
     <div class="col-xs-4">
 
       <%= form_tag update_quantity_path(cart_item.id), remote: true do |f| %>
-        <h4 class="text-right">Unit Price: <span style="color: green"><%= guitar.price_money %></span></h4>
+        <h4 class="text-right">Unit Price: <span style="color: green"><%= item.price_money %></span></h4>
         <div class="row">
           <div class="col-xs-4">
             <%= number_field_tag :quantity, '', value: cart_item.quantity.to_i, class: "form-control", min: 1 %>
-            <%= hidden_field_tag :guitar_id, '', value: guitar.id %>
+            <%= hidden_field_tag :product_id, '', value: item.product.id %>
           </div>
           <div class="col-xs-8 text-right">
             <div class="btn-group">
               <%= submit_tag "Update Quantity", class: "btn btn-primary" %>
-              <%= link_to "Delete", remove_from_cart_path(cart_item.id), { data: { confirm: "Are you sure you wish to delete the product '#{cart_item.guitar.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+              <%= link_to "Delete", remove_from_cart_path(cart_item.id), { data: { confirm: "Are you sure you wish to delete the product from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
             </div>
           </div>
         </div>

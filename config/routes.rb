@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :cart, only: [:destroy]
-  resources :guitars
   root to: 'guitars#index'
   devise_for :users
   resources :users
+  resources :accessories
+  resources :cart, only: [:destroy]
+  resources :guitars
 
   post 'add_to_cart', to: 'cart_items#add_to_cart'
   delete 'remove_from_cart/:id', to: 'cart_items#remove_from_cart', as: :remove_from_cart
