@@ -5,6 +5,7 @@
     </div>
     <div class="col-xs-6">
       <h4><%= link_to "#{item.name}", item.class.name == "Guitar" ? guitar_path(item.id) : accessory_path(item.id) %></h4>
+      <h5>Serial NO: <span class="btn btn-warning btn-sm"><%= item.product.serial_number %></span></h5>
     </div>
     <div class="col-xs-4">
 
