@@ -11,3 +11,4 @@ added follwoing functionality
 #pagination
 
 you can check the live demo https://memcorp.herokuapp.com
+# demo_guitar_project
